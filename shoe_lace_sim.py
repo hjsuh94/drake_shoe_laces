@@ -2,11 +2,8 @@ import yaml
 import numpy as np
 import matplotlib.pyplot as plt
 
-from pydrake.systems.drawing import plot_system_graphviz
-from pydrake.multibody.plant import ExternallyAppliedSpatialForce, ConnectContactResultsToDrakeVisualizer
 from pydrake.systems.framework import DiagramBuilder
 from pydrake.systems.analysis import Simulator
-from pydrake.all import LinearBushingRollPitchYaw, PySerializer, RollPitchYaw, RigidTransform
 
 from manipulation_diagram.manipulation_diagram import ManipulationDiagram
 
