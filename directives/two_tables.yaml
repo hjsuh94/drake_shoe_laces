@@ -1,0 +1,20 @@
+directives:
+- add_model:
+    name: small_table
+    file: package://drake_shoe_laces/small_table.urdf
+
+- add_frame:
+    name: small_table_origin
+    X_PF:
+        base_frame: world
+        rotation: !Rpy {deg: [0.0, 0.0, 0.0]}
+        translation: [0.0, 0.8, 0.0]
+
+- add_weld:
+    parent: world
+    child: small_table::TableTop
+
+- add_model:
+    name: rope
+    file: package://drake_shoe_laces/model.sdf
+

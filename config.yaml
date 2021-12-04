@@ -1,0 +1,63 @@
+# Configuration for environment.
+env:
+  mbp_dt: 0.0005
+  # Load the arms in config file. It's possible to 
+  arms:
+    iiwa:
+      pos: [0, 0, 0]
+      rpy: [0, 0, 0]
+      grip: 0.01
+      arm_type: "iiwa_7"
+      collision_model: "none"
+      default_q0: [0.0, 0.1, 0, -1.2, 0, 1.6, 0]
+      default_gripper: [-0.05, 0.05]
+  rgbd_sensors:
+    enabled: True
+    sensor_list:
+      camera_0: # 45 degree view
+        width: 640
+        height: 480
+        fov_y: 0.7051130178057091  # 40.4 degrees, from d415 specs https://www.intelrealsense.com/stereo-depth-modules-and-processors/
+        z_near: 0.01 # should probably just leave these so it's perfect
+        z_far: 10 # if they are -1 then use defaults
+        pos: [1.5        , 1.5        , 1.5]
+        rpy: [ 1.04719, 3.14, -0.707]
+      camera_1: # 45 degree view
+        width: 640
+        height: 480
+        fov_y: 0.7051130178057091  # 40.4 degrees, from d415 specs https://www.intelrealsense.com/stereo-depth-modules-and-processors/
+        z_near: 0.01 # should probably just leave these so it's perfect
+        z_far: 10 # if they are -1 then use defaults
+        pos: [-1.5        , -1.5        , 1.5]
+        rpy: [ -2.09439, 0, -0.707]
+  visualization: True
+
+# Load any packages here. Some examples here.
+external_packages:
+  manipulation_station:
+    path: "drake/examples/manipulation_station/models/package.xml"
+  wsg_50_description:
+    path: "drake/manipulation/models/wsg_50_description/package.xml"
+  drake_shoe_laces:
+    path: "models/package.xml"
+
+# Parse model directives. Any packages used here must be declared above.
+directives: "directives/two_tables.yaml"
+
+# Rope parameters
+rope:
+  num_segments: 19
+  segment_length: [0.05, 0.05, 0.05, 0.05, 0.05,
+                   0.05, 0.05, 0.05, 0.05, 0.05,
+                   0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+  link_mass: [0.02, 0.02, 0.02, 0.02, 0.02,
+              0.02, 0.02, 0.02, 0.02, 0.02,
+              0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02]
+  rope_radius: 0.003
+  joint_limit: 1            # Unknown effect
+  joint_damping: 0.001      # Unknown effect
+  joint_friction: 0         # Unknown effect
+  spring_stiffness: 0       # Unknown effect
+  rope_height: 2.0          # Gets overwritten - no effect
+  rope_x: 0                 # Gets overwritten - no effect
+  rope_y: 0.5               # Gets overwritten - no effect
